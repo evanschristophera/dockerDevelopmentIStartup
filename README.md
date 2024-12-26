@@ -11,6 +11,19 @@
    ```
 
 
+## PROGRESS!!!
+
+Was able to build and run [micronaut's graalvm example](https://guides.micronaut.io/latest/micronaut-creating-first-graal-app-gradle-java.html) and run as a docker container.  
+
+Nest step is to run a distroless container. Smaller and faster.
+
+***Helpful Safety Hint***
+
+Because of WSL and Windows in general, localhost is not really localhost in docker containers.  To find the IP of the docker container running a service use:
+```
+docker inspect  
+```
+
 ## git
 
 To use an SSH URL one must inform git as to which identiy file to use.  That is configured with the following command:

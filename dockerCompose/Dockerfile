@@ -44,8 +44,6 @@ RUN apt-get update
 
 RUN apt install -y zip unzip
 
-
-
 RUN curl -s "https://get.sdkman.io" | bash
 
 # this SHELL command is needed to allow using source
