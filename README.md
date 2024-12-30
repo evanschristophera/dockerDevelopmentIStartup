@@ -1,8 +1,11 @@
 # dockerDevelopmentIStartup
 
+This is to create an image that allows graalvm image builds.  The images built using dind will be used in the application which, currently, will be run using docker compose.
+
+
 1. Build with the following:
    ```
-   cd dockerCompose 
+   cd docker-dind
    docker build -t ubuntu-dind .
    ```
 1. Run the image with: 
@@ -36,4 +39,4 @@ GIT_SSH_COMMAND="ssh -i /path/to/your/private_key" git clone git@github.com:your
 ```
 
 
-- Need to explor the possibiliy of using an alias
+- Need to explore the possibiliy of using an alias
