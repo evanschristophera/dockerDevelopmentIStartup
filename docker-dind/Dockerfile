@@ -15,6 +15,8 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     gnupg \
+    net-tools \
+    telnet \
     software-properties-common && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     add-apt-repository \
@@ -30,19 +32,20 @@ ENV DOCKER_HOST=unix:///var/run/docker.sock
 
 
 
-COPY dockerd-entrypoint.sh /usr/local/bin/
-# don't like this COPY ~/.ssh /root/.ssh
 
-RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh
-# Set the entrypoint to start the Docker daemon
-ENTRYPOINT ["dockerd-entrypoint.sh"]
-CMD ["dockerd"]
 
 
 RUN apt-get update
 # forsaking in favor of sdkman RUN apt-get install -y openjdk-21-jdk openjdk-21-jre
 
-RUN apt install -y zip unzip
+RUN apt install -y zip unzip dos2unix
+
+COPY dockerd-entrypoint.sh /usr/local/bin/
+# don't like this COPY ~/.ssh /root/.ssh Volumes to the rescue
+RUN dos2unix /usr/local/bin/dockerd-entrypoint.sh
+RUN chmod 755 /usr/local/bin/dockerd-entrypoint.sh
+
+
 
 RUN curl -s "https://get.sdkman.io" | bash
 
@@ -61,3 +64,6 @@ RUN apt-get update
 
 RUN apt-get install -y zlib1g-dev
 
+# Set the entrypoint to start the Docker daemon
+ENTRYPOINT ["dockerd-entrypoint.sh"]
+CMD ["dockerd"]

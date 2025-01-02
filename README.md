@@ -9,9 +9,22 @@ This is to create an image that allows graalvm image builds.  The images built u
    docker build -t ubuntu-dind .
    ```
 1. Run the image with: 
+   ***Windows***
    ```
-   docker run --privileged -v C:/Users/evansc/.ssh:/root/.ssh --rm --name ubuntu-dind -d ubuntu-dind
+   docker run --privileged `
+   -v C:/Users/evansc/.ssh:/root/.ssh `
+   -v C:\Users\evansc\work\ifrco\docker_code_workspace:/root/code_workspace `
+   --rm --name ubuntu-dind ubuntu-dind
    ```
+   ***failed***
+   ```
+   docker run --privileged `
+   -v C:/Users/evansc/.ssh:/root/.ssh `
+   -v C:\Users\evansc\work\ifrco\docker_code_workspace:/root/code_workspace `
+   -v C:\Users\evansc\work\ifrco\dind_registry:/var/lib/docker `
+   --rm --name ubuntu-dind ubuntu-dind
+   ```
+`
 
 
 ## PROGRESS!!!
